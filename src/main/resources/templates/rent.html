@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выдача книги</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-json {
+            background: #17a2b8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-json:hover {
+            transform: translateY(-2px);
+            background: #138496;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-return {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-return:hover {
+            background: #218838;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #764ba2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🔗 Выдача книги клиенту</h1>
+    </div>
+
+    <!-- Кнопка для получения JSON -->
+    <div class="action-buttons">
+        <a href="/rent/api" class="btn-json" target="_blank">📊 Получить JSON всех взятых книг</a>
+    </div>
+
+    <div class="form-section">
+        <h2>📖 Выдать книгу</h2>
+        <form action="/rent" method="post">
+            <div class="form-group">
+                <label>Клиент:</label>
+                <select name="clientId" required>
+                    <option value="">-- Выберите клиента --</option>
+                    <option th:each="c : ${clients}"
+                            th:value="${c.id}"
+                            th:text="${c.fullName}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Книга:</label>
+                <select name="bookId" required>
+                    <option value="">-- Выберите книгу --</option>
+                    <option th:each="b : ${books}"
+                            th:value="${b.id}"
+                            th:text="${b.name + ' - ' + b.author}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary">📚 Выдать книгу</button>
+        </form>
+    </div>
+
+    <h2>📋 Текущие выдачи книг</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Клиент</th>
+            <th>Книга</th>
+            <th>Автор</th>
+            <th>Дата выдачи</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rent : ${rents}">
+            <td th:text="${rent.client.fullName}"></td>
+            <td th:text="${rent.book.name}"></td>
+            <td th:text="${rent.book.author}"></td>
+            <td th:text="${#temporals.format(rent.rentDate, 'dd.MM.yyyy')}"></td>
+            <td>
+                <form method="post" th:action="@{/rent/return}">
+                    <input type="hidden" name="rentId" th:value="${rent.id}">
+                    <button type="submit" class="btn-return">✅ Вернуть</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="nav-links">
+        <a href="/">🏠 На главную</a>
+        <a href="/books">📖 К книгам</a>
+        <a href="/client">👥 К клиентам</a>
+    </div>
+</div>
+</body>
+</html>
