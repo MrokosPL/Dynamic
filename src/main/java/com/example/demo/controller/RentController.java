@@ -47,10 +47,4 @@ public class RentController {
         return "redirect:/rent"; // Возвращаем на эту же страницу
     }
 
-    @Operation(summary = "Метод для вызова списка всех активных выдач в виде JSON")
-    @GetMapping("/api")
-    @ResponseBody
-    public List<RentDto> getAllRentsJson() {
-        return rentService.getAllRentsJSON();
-    }
 }
