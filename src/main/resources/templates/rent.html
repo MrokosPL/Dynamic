@@ -176,16 +176,16 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>🔗 Выдача книги клиенту</h1>
+        <h1> Выдача книги клиенту</h1>
     </div>
 
     <!-- Кнопка для получения JSON -->
     <div class="action-buttons">
-        <a href="/rent/api" class="btn-json" target="_blank">📊 Получить JSON всех взятых книг</a>
+        <a href="/rent/api" class="btn-json" target="_blank"> Получить JSON всех взятых книг</a>
     </div>
 
     <div class="form-section">
-        <h2>📖 Выдать книгу</h2>
+        <h2> Выдать книгу</h2>
         <form action="/rent" method="post">
             <div class="form-group">
                 <label>Клиент:</label>
@@ -209,11 +209,11 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn-primary">📚 Выдать книгу</button>
+            <button type="submit" class="btn-primary"> Выдать книгу</button>
         </form>
     </div>
 
-    <h2>📋 Текущие выдачи книг</h2>
+    <h2> Текущие выдачи книг</h2>
     <table>
         <thead>
         <tr>
@@ -233,7 +233,7 @@
             <td>
                 <form method="post" th:action="@{/rent/return}">
                     <input type="hidden" name="rentId" th:value="${rent.id}">
-                    <button type="submit" class="btn-return">✅ Вернуть</button>
+                    <button type="submit" class="btn-return"> Вернуть</button>
                 </form>
             </td>
         </tr>
@@ -241,9 +241,9 @@
     </table>
 
     <div class="nav-links">
-        <a href="/">🏠 На главную</a>
-        <a href="/books">📖 К книгам</a>
-        <a href="/client">👥 К клиентам</a>
+        <a href="/"> На главную</a>
+        <a href="/books"> К книгам</a>
+        <a href="/client"> К клиентам</a>
     </div>
 </div>
 </body>

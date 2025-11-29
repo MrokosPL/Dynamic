@@ -103,7 +103,7 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1 th:text="${client.id} != null ? '✏️ Редактирование клиента' : '➕ Добавление клиента'"></h1>
+        <h1 th:text="${client.id} != null ? ' Редактирование клиента' : ' Добавление клиента'"></h1>
     </div>
 
     <form th:action="@{${client.id} != null ? '/client/edit/' + ${client.id} : '/client/add'}"
@@ -119,7 +119,7 @@
             <input type="date" th:field="*{birthDate}" required>
         </div>
 
-        <button type="submit" class="btn-primary">💾 Сохранить</button>
+        <button type="submit" class="btn-primary"> Сохранить</button>
     </form>
 
     <a href="/client" class="back-link">← Назад к списку клиентов</a>

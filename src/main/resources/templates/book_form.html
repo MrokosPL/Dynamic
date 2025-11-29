@@ -101,7 +101,7 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1 th:text="${book.id} != null ? '✏️ Редактирование книги' : '➕ Добавление книги'"></h1>
+        <h1 th:text="${book.id} != null ? ' Редактирование книги' : ' Добавление книги'"></h1>
     </div>
 
     <form th:action="@{${book.id} != null ? '/books/edit/' + ${book.id} : '/books/add'}"
@@ -122,7 +122,7 @@
             <input type="text" th:field="*{isbn}" required>
         </div>
 
-        <button type="submit" class="btn-primary">💾 Сохранить</button>
+        <button type="submit" class="btn-primary"> Сохранить</button>
     </form>
 
     <a href="/books" class="back-link">← Назад к списку книг</a>

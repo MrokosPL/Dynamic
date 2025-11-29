@@ -110,8 +110,8 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>👥 Список клиентов</h1>
-        <a href="/client/add" class="btn-primary">➕ Добавить клиента</a>
+        <h1> Список клиентов</h1>
+        <a href="/client/add" class="btn-primary"> Добавить клиента</a>
     </div>
 
     <table>
@@ -129,8 +129,8 @@
             <td th:text="${client.fullName}"></td>
             <td th:text="${#temporals.format(client.birthDate, 'dd.MM.yyyy')}"></td>
             <td class="actions">
-                <a th:href="@{'/client/edit/' + ${client.id}}">✏️ Редактировать</a>
-                <a th:href="@{'/client/delete/' + ${client.id}}">❌ Удалить</a>
+                <a th:href="@{'/client/edit/' + ${client.id}}"> Редактировать</a>
+                <a th:href="@{'/client/delete/' + ${client.id}}"> Удалить</a>
             </td>
         </tr>
         </tbody>

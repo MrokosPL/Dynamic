@@ -110,8 +110,8 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>📚 Список книг</h1>
-        <a href="/books/add" class="btn-primary">➕ Добавить книгу</a>
+        <h1> Список книг</h1>
+        <a href="/books/add" class="btn-primary"> Добавить книгу</a>
     </div>
 
     <table>
@@ -131,8 +131,8 @@
             <td th:text="${book.author}"></td>
             <td th:text="${book.isbn}"></td>
             <td class="actions">
-                <a th:href="@{'/books/edit/' + ${book.id}}">✏️ Редактировать</a>
-                <a th:href="@{'/books/delete/' + ${book.id}}">❌ Удалить</a>
+                <a th:href="@{'/books/edit/' + ${book.id}}"> Редактировать</a>
+                <a th:href="@{'/books/delete/' + ${book.id}}"> Удалить</a>
             </td>
         </tr>
         </tbody>
