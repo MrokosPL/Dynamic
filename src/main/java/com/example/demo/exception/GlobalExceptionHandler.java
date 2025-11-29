@@ -20,4 +20,11 @@ public class GlobalExceptionHandler {
         model.addAttribute("status", "400");
         return "error";
     }
+
+    @ExceptionHandler(RentException.class)
+    public String handleRentException(Exception e, Model model) {
+        model.addAttribute("errorMessage", e.getMessage());
+        model.addAttribute("status", "409");
+        return "error";
+    }
 }

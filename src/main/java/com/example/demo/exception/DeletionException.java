@@ -5,7 +5,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class DeletionException extends ResponseStatusException {
 
-    public DeletionException(String response) {
-        super(HttpStatus.BAD_REQUEST, response);
+    public DeletionException(String message) {
+        super(HttpStatus.BAD_REQUEST, message);
     }
 }

@@ -4,6 +4,7 @@ import com.example.demo.dto.RentDto;
 import com.example.demo.entity.BookEntity;
 import com.example.demo.entity.ClientEntity;
 import com.example.demo.entity.RentEntity;
+import com.example.demo.exception.RentException;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.ClientRepository;
 import com.example.demo.repository.RentRepository;
@@ -33,7 +34,11 @@ public class RentService {
         rent.setBook(book);
         rent.setRentDate(LocalDate.now());
 
-        return rentRepository.save(rent);
+        if (!rentRepository.existsByClientId(clientId)) {
+            return rentRepository.save(rent);
+        } else {
+            throw new RentException("Пользователь уже взял книгу");
+        }
     }
 
     public List<RentEntity> getAllRents() {
